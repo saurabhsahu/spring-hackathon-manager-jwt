@@ -2,6 +2,7 @@ package com.hackthon.manager.entity;
 
 import javax.persistence.*;
 import java.util.Arrays;
+import java.util.Date;
 import java.util.List;
 
 @Entity
@@ -13,17 +14,21 @@ public class Challenge {
     private String title;
     private String description;
     private String[] tags;
+    private int vote;
+    private int employeeId;
+    private Date creation_date;
 
     public Challenge() {
     }
 
-    public Challenge(int id, String title, String description, String[] tags) {
+    public Challenge(int id, String title, String description, String[] tags, int vote, int employeeId) {
         this.id = id;
         this.title = title;
         this.description = description;
         this.tags = tags;
+        this.vote = vote;
+        this.employeeId = employeeId;
     }
-
 
     public String getTitle() {
         return title;
@@ -57,6 +62,30 @@ public class Challenge {
         this.id = id;
     }
 
+    public int getVote() {
+        return vote;
+    }
+
+    public void setVote(int vote) {
+        this.vote = vote;
+    }
+
+    public Date getCreation_date() {
+        return creation_date;
+    }
+
+    public void setCreation_date(Date creation_date) {
+        this.creation_date = creation_date;
+    }
+
+    public int getEmployeeId() {
+        return employeeId;
+    }
+
+    public void setEmployeeId(int employeeId) {
+        this.employeeId = employeeId;
+    }
+
     @Override
     public String toString() {
         return "Challenge{" +
@@ -64,6 +93,9 @@ public class Challenge {
                 ", title='" + title + '\'' +
                 ", description='" + description + '\'' +
                 ", tags=" + Arrays.toString(tags) +
+                ", vote=" + vote +
+                ", employeeId=" + employeeId +
+                ", creation_date=" + creation_date +
                 '}';
     }
 }

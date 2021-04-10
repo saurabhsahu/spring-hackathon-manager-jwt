@@ -7,9 +7,15 @@ import com.hackthon.manager.util.JwtUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.web.bind.annotation.*;
 
+import javax.persistence.EntityNotFoundException;
+import java.util.Date;
 import java.util.List;
+import java.util.Optional;
 
 @RestController
 public class HackathonController {
@@ -40,14 +46,34 @@ public class HackathonController {
     }
 
     @PostMapping("/addChallenge")
-    public String addChallenge(@RequestBody Challenge challengeRequest) throws Exception {
+    public String addChallenge(@RequestBody Challenge challengeRequest) {
+        challengeRequest.setCreation_date(new Date());
+        challengeRequest.setEmployeeId(Integer.parseInt(SecurityContextHolder.getContext().getAuthentication().getName()));
         challengeService.addChallenge(challengeRequest);
         return "Challenge Added";
     }
 
     @GetMapping("/getChallenges")
-    public List<Challenge> getAllChallenge() throws Exception {
+    public List<Challenge> getAllChallenge() {
         return challengeService.getChallenges();
+    }
+
+    @PostMapping("challenges/{challengeId}/castVote")
+    public String castVote(@PathVariable("challengeId") int challengeId) throws Exception {
+        Optional<Challenge> challenge=  challengeService.getChallengebyId(challengeId);
+        challenge.orElseThrow(() -> new EntityNotFoundException("Not found: " + challengeId));
+        int voteCount= challenge.get().getVote();
+        int loggedInEmployeeId= Integer.parseInt(SecurityContextHolder.getContext().getAuthentication().getName());
+        if(challenge.get().getEmployeeId()!=loggedInEmployeeId){
+            Challenge challengeLocal = challenge.get();
+            voteCount++;
+            challengeLocal.setVote(voteCount);
+            challengeService.updateVoteCountForChallenge(challengeLocal);
+            return "New Vote is casted for challenge: "+challengeId;
+        }
+       else{
+           return "Challenge author can't vote his/her own challenge.";
+        }
     }
 
 }
