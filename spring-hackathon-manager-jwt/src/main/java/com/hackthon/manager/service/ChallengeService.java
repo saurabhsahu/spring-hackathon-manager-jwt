@@ -26,4 +26,16 @@ public class ChallengeService {
     public void updateVoteCountForChallenge(Challenge challenge){
         repository.save(challenge);
     }
+    public  List<Challenge>  getChallengesSortByAscOnVote(){
+        return repository.findAllByOrderByVoteAsc();
+    }
+    public  List<Challenge>  getChallengesSortByDescOnVote(){
+        return repository.findAllByOrderByVoteDesc();
+    }
+    public  List<Challenge>  getChallengesSortByAscOnCreationDate(){
+        return repository.findAllByOrderByCreationDateAsc();
+    }
+    public  List<Challenge>  getChallengesSortByDescOnCreationDate(){
+        return repository.findAllByOrderByCreationDateDesc();
+    }
 }

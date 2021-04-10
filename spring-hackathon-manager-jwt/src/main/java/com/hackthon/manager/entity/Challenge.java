@@ -16,7 +16,7 @@ public class Challenge {
     private String[] tags;
     private int vote;
     private int employeeId;
-    private Date creation_date;
+    private Date creationDate;
 
     public Challenge() {
     }
@@ -70,12 +70,12 @@ public class Challenge {
         this.vote = vote;
     }
 
-    public Date getCreation_date() {
-        return creation_date;
+    public Date getCreationDate() {
+        return creationDate;
     }
 
-    public void setCreation_date(Date creation_date) {
-        this.creation_date = creation_date;
+    public void setCreationDate(Date creation_date) {
+        this.creationDate = creation_date;
     }
 
     public int getEmployeeId() {
@@ -95,7 +95,7 @@ public class Challenge {
                 ", tags=" + Arrays.toString(tags) +
                 ", vote=" + vote +
                 ", employeeId=" + employeeId +
-                ", creation_date=" + creation_date +
+                ", creation_date=" + creationDate +
                 '}';
     }
 }

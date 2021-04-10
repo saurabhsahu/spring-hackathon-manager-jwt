@@ -47,15 +47,34 @@ public class HackathonController {
 
     @PostMapping("/addChallenge")
     public String addChallenge(@RequestBody Challenge challengeRequest) {
-        challengeRequest.setCreation_date(new Date());
+        challengeRequest.setCreationDate(new Date());
         challengeRequest.setEmployeeId(Integer.parseInt(SecurityContextHolder.getContext().getAuthentication().getName()));
         challengeService.addChallenge(challengeRequest);
-        return "Challenge added successfully";
+        return "Challenge added successfully.";
     }
 
     @GetMapping("/getChallenges")
     public List<Challenge> getAllChallenge() {
         return challengeService.getChallenges();
+    }
+    @GetMapping("/getChallengesSortAscVote")
+    public List<Challenge> getAllChallengeSortAscVote() {
+        return challengeService.getChallengesSortByAscOnVote();
+    }
+
+    @GetMapping("/getChallengesSortDescVote")
+    public List<Challenge> getAllChallengeSortDescVote() {
+        return challengeService.getChallengesSortByDescOnVote();
+    }
+
+    @GetMapping("/getChallengesSortAscCreationDate")
+    public List<Challenge> getAllChallengeSortAscCreationDate() {
+        return challengeService.getChallengesSortByAscOnCreationDate();
+    }
+
+    @GetMapping("/getChallengesSortDescCreationDate")
+    public List<Challenge> getAllChallengeSortDescCreationDate() {
+        return challengeService.getChallengesSortByDescOnCreationDate();
     }
 
     @PostMapping("challenges/{challengeId}/castVote")

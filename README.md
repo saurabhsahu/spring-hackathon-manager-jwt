@@ -115,6 +115,74 @@ if you want to copy project and run then below tools will be needed
                    New Vote is casted for challenge: 6
                 Response 2 :
                     Challenge author can't vote his/her own challenge.
+  
+  
+  5. http://localhost:9192/getChallengesSortAscVote
+            Usage :
+                Header :
+                    Content-Type:application/json
+                    Authorization:Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiIyIiwiZXhwIjoxNjE4MDgxMDAwLCJpYXQiOjE2MTgwNDUwMDB9.D3l6vUEwLgWmRDBMi0t-bykWy__beCB5IWueBaQqAYM
+                Body content :
+                     
+                Response :
+                   [
+                        {
+                            "id": 7,
+                            "title": "challemge3",
+                            "description": "description 3",
+                            "tags": [
+                                "admin",
+                                "editor",
+                                "test"
+                            ],
+                            "vote": 0,
+                            "employeeId": 2,
+                            "creationDate": "2021-04-10T13:29:20.191+00:00"
+                        },
+                        {
+                            "id": 8,
+                            "title": "challemge5",
+                            "description": "description 4",
+                            "tags": [
+                                "admin",
+                                "editor"
+                            ],
+                            "vote": 0,
+                            "employeeId": 2,
+                            "creationDate": "2021-04-10T13:29:21.400+00:00"
+                        },
+                        {
+                            "id": 6,
+                            "title": "challemge8",
+                            "description": "description 8",
+                            "tags": [
+                                "admin",
+                                "editor",
+                                "test"
+                            ],
+                            "vote": 1,
+                            "employeeId": 2,
+                            "creationDate": "2021-04-10T13:29:18.541+00:00"
+                        },
+                        {
+                            "id": 5,
+                            "title": "challemge6",
+                            "description": "description 6",
+                            "tags": [
+                                "admin",
+                                "editor",
+                                "test"
+                            ],
+                            "vote": 2,
+                            "employeeId": 2,
+                            "creationDate": "2021-04-10T13:29:16.612+00:00"
+                        }
+                    ]  
+                    
+  
+   6. http://localhost:9192/getChallengesSortDescVote
+   7. http://localhost:9192/getChallengesSortAscCreationDate
+   8. http://localhost:9192/getChallengesSortDescCreationDate
 ```
 
 ## Deployment
