@@ -50,7 +50,7 @@ public class HackathonController {
         challengeRequest.setCreation_date(new Date());
         challengeRequest.setEmployeeId(Integer.parseInt(SecurityContextHolder.getContext().getAuthentication().getName()));
         challengeService.addChallenge(challengeRequest);
-        return "Challenge Added";
+        return "Challenge added successfully";
     }
 
     @GetMapping("/getChallenges")
